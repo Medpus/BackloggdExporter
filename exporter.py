@@ -8,12 +8,12 @@ def fetch_profile_page(profile_url, page):
     try:
         paginated_url = f"{profile_url}?page={page}"
         response = requests.get(paginated_url)
-        response.raise_for_status()  # Raise an error for HTTP errors
+        response.raise_for_status()  
 
         soup = BeautifulSoup(response.content, "html.parser")
         game_entries = soup.select(
             ".rating-hover"
-        )  # Adjust selector based on your analysis
+        )  
 
         if not game_entries:
             return []
@@ -100,7 +100,6 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    # Handle both URL and username input
     if args.profile_url_or_username.startswith("http"):
         profile_url = args.profile_url_or_username
         username = profile_url.split("/u/")[1].split("/")[0]

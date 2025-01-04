@@ -21,7 +21,7 @@ pip install requests beautifulsoup4
 1. Clone or download this repository:
 
 ```bash
-git clone https://github.com/<medhus>/backloggd-exporter.git
+git clone https://github.com/Medpus/backloggd-exporter.git
 ```
 
 2. Open a terminal in the project directory

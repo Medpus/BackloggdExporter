@@ -1,4 +1,4 @@
-# Backloggd Scraper
+# Backloggd Exporter
 
 This Python script scrapes titles and game ratings from a [Backloggd](https://backloggd.com/) user’s profile and saves them into a CSV file.  
 It uses [requests](https://pypi.org/project/requests/) to fetch the HTML pages, [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) to parse the HTML, and writes the output to a CSV file.

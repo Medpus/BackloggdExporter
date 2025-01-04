@@ -43,7 +43,7 @@ git clone https://github.com/Medpus/backloggd-exporter.git
 
 ## Output
 
-A CSV file named <username>\_games.csv will be created in the current directory.
+A CSV file named <username>\_games.csv will be created in the current directory. An example of the expected output can be seen in the file exampleuser_games.csv.
 The file will have the following strucure:
 | Title | Rating |
 | -------------- | ------ |

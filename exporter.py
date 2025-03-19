@@ -31,8 +31,10 @@ def extract_game_data(game_entries):
         title_element = game_entry.select_one(".game-text-centered")
         title = title_element.get_text(strip=True) if title_element else "Unknown Title"
 
-        # Extract game rating from the style attribute
+        # Extract game rating - Method 1: stars-top
         stars_top_element = game_entry.select_one(".stars-top")
+        rating = 0.0  # Default rating if nothing is found
+
         if stars_top_element:
             style = stars_top_element.get("style", "")
             width = (
@@ -41,14 +43,24 @@ def extract_game_data(game_entries):
                 else "0"
             )
             try:
-                rating = float(width) / 20  # Convert percentage width to a 5-star rating
+                rating = float(width) / 20  # Convert percentage width to 5-star scale
             except ValueError:
                 rating = 0.0
-        else:
-            rating = 0.0
+
+        # Method 2: data-rating (only if stars-top is missing)
+        if rating == 0.0:
+            game_cover_element = game_entry.find(attrs={"data-rating": True})
+            if game_cover_element:
+                data_rating = game_cover_element.get("data-rating")
+                try:
+                    rating = float(data_rating) / 2  # Convert 10-point scale to 5-star
+                except (ValueError, TypeError):
+                    rating = 0.0
 
         game_data.append((title, rating)) 
     return game_data
+
+
 
 # Fetch all game data by iterating through pages until no new data is found
 def fetch_all_game_data(profile_url):
